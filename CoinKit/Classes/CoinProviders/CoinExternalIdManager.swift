@@ -1,14 +1,5 @@
 import ObjectMapper
 
-struct CoinExternalIdResponse: ImmutableMappable {
-    let coins: [CoinExternalData]
-
-    init(map: Map) throws {
-        coins = try map.value("coins")
-    }
-
-}
-
 class CoinProviderManager {
     private let coinProvider: CoinExternalIdProvider
     private let storage: IProviderCoinStorage

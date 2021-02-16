@@ -88,7 +88,7 @@ extension CoinType: RawRepresentable {
         } else {
             switch chunks[0] {
             case "erc20": self = .erc20(address: String(chunks[1]))
-            case "binance": self = .erc20(address: String(chunks[1]))
+            case "bep2": self = .binance(symbol: String(chunks[1]))
             case "unsupported": self = .unsupported(id: chunks.suffix(from: 1).joined(separator: "|"))
             default: self = .unsupported(id: chunks.joined(separator: "|"))
             }
@@ -104,7 +104,7 @@ extension CoinType: RawRepresentable {
         case .ethereum: return "ethereum"
         case .zcash: return "zcash"
         case .erc20(let address): return ["erc20", address].joined(separator: "|")
-        case .binance(let symbol): return ["binance", symbol].joined(separator: "|")
+        case .binance(let symbol): return ["bep2", symbol].joined(separator: "|")
         case .unsupported(let id): return ["unsupported", id].joined(separator: "|")
         }
     }

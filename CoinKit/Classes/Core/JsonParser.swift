@@ -3,17 +3,6 @@ import ObjectMapper
 class JsonParser {
 
     func parse<T: ImmutableMappable>(filename: String) throws -> T {
-        let docsPath = Bundle.main.resourcePath!
-        let fileManager = FileManager.default
-
-        do {
-            let docsArray = try fileManager.contentsOfDirectory(atPath: docsPath)
-            print(docsArray)
-        } catch {
-            print(error)
-        }
-
-
         guard let path = CoinKit.bundle?.path(forResource: filename, ofType: "json") else {
             throw ParseError.notFound
         }
