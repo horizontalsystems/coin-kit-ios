@@ -1,6 +1,5 @@
 import RxSwift
 
-
 public class CoinKit {
     private let coinProviderManager: CoinProviderManager
     private let storage: GrdbStorage
@@ -46,12 +45,12 @@ extension CoinKit {
 
 extension CoinKit {
 
-    public func providerId(id: String, providerName: String) -> String? {
-        coinProviderManager.providerId(id: id, providerName: providerName)
+    public func providerId(id: String, provider: Provider) -> String? {
+        coinProviderManager.providerId(id: id, providerName: provider.rawValue)
     }
 
-    public func id(providerId: String, providerName: String) -> String? {
-        coinProviderManager.id(providerId: providerId, providerName: providerName)
+    public func id(providerId: String, provider: Provider) -> String? {
+        coinProviderManager.id(providerId: providerId, providerName: provider.rawValue)
     }
 
 }

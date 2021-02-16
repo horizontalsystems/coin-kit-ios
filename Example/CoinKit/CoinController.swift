@@ -47,7 +47,10 @@ class CoinController: UIViewController {
                      .dash,
                      .ethereum,
                      .erc20(address: "0xeb269732ab75a6fd61ea60b06fe994cd32a83549"),
-                     .binance(symbol: "CAS-167")]
+                     .bep2(symbol: "CAS-167"),
+                     .binanceSmartChain,
+                     .bep20(address: "0x78650b139471520656b9e7aa7a5e9276814a38e9")
+        ]
 
         tableView.reloadData()
     }
@@ -75,8 +78,8 @@ extension CoinController: UITableViewDataSource, UITableViewDelegate {
 
         let coinId = coinTypes[indexPath.row].rawValue
         cell.idTitle = coinId
-        cell.geckoTitle = coinKit.providerId(id: coinId, providerName: "coingecko")
-        cell.compareTitle = coinKit.providerId(id: coinId, providerName: "cryptocompare")
+        cell.geckoTitle = coinKit.providerId(id: coinId, provider: .coinGecko)
+        cell.compareTitle = coinKit.providerId(id: coinId, provider: .cryptoCompare)
 
     }
 

@@ -5,19 +5,11 @@ public enum CoinType {
     case dash
     case ethereum
     case zcash
+    case binanceSmartChain
     case erc20(address: String)
-    case binance(symbol: String)
+    case bep2(symbol: String)
+    case bep20(address: String)
     case unsupported(id: String)
-
-    public var title: String {
-        switch self {
-        case .bitcoin: return "Bitcoin"
-        case .litecoin: return "Litecoin"
-        case .bitcoinCash: return "Bitcoin Cash"
-        default: return ""
-        }
-    }
-
 }
 
 extension CoinType: Equatable {
@@ -30,9 +22,12 @@ extension CoinType: Equatable {
         case (.dash, .dash): return true
         case (.ethereum, .ethereum): return true
         case (.zcash, .zcash): return true
+        case (.binanceSmartChain, .binanceSmartChain): return true
         case (.erc20(let lhsAddress), .erc20(let rhsAddress)):
             return lhsAddress.lowercased() == rhsAddress.lowercased()
-        case (.binance(let lhsSymbol), .binance(let rhsSymbol)):
+        case (.bep2(let lhsSymbol), .bep2(let rhsSymbol)):
+            return lhsSymbol == rhsSymbol
+        case (.bep20(let lhsSymbol), .bep20(let rhsSymbol)):
             return lhsSymbol == rhsSymbol
         case (.unsupported(let lhsId), .unsupported(let rhsId)):
             return lhsId == rhsId
@@ -56,12 +51,16 @@ extension CoinType: Hashable {
             hasher.combine("dash")
         case .ethereum:
             hasher.combine("ethereum")
-        case .erc20(let address):
-            hasher.combine("erc20_\(address)")
-        case .binance(let symbol):
-            hasher.combine("binance_\(symbol)")
         case .zcash:
             hasher.combine("Zcash")
+        case .binanceSmartChain:
+            hasher.combine("binance_smart_chain")
+        case .erc20(let address):
+            hasher.combine("erc20_\(address)")
+        case .bep2(let symbol):
+            hasher.combine("bep2_\(symbol)")
+        case .bep20(let address):
+            hasher.combine("bep20_\(address)")
         case .unsupported(let id):
             hasher.combine(id)
         }
@@ -83,12 +82,14 @@ extension CoinType: RawRepresentable {
             case "dash": self = .dash
             case "ethereum": self = .ethereum
             case "zcash": self = .zcash
+            case "binance": self = .binanceSmartChain
             default: self = .unsupported(id: String(chunks[0]))
             }
         } else {
             switch chunks[0] {
             case "erc20": self = .erc20(address: String(chunks[1]))
-            case "bep2": self = .binance(symbol: String(chunks[1]))
+            case "bep2": self = .bep2(symbol: String(chunks[1]))
+            case "bep20": self = .bep20(address: String(chunks[1]))
             case "unsupported": self = .unsupported(id: chunks.suffix(from: 1).joined(separator: "|"))
             default: self = .unsupported(id: chunks.joined(separator: "|"))
             }
@@ -104,7 +105,9 @@ extension CoinType: RawRepresentable {
         case .ethereum: return "ethereum"
         case .zcash: return "zcash"
         case .erc20(let address): return ["erc20", address].joined(separator: "|")
-        case .binance(let symbol): return ["bep2", symbol].joined(separator: "|")
+        case .binanceSmartChain: return "binance"
+        case .bep2(let symbol): return ["bep2", symbol].joined(separator: "|")
+        case .bep20(let address): return ["bep20", address].joined(separator: "|")
         case .unsupported(let id): return ["unsupported", id].joined(separator: "|")
         }
     }
