@@ -1,0 +1,11 @@
+platform :ios, '11'
+use_modular_headers!
+
+target 'CoinKitExample' do
+  pod 'CoinKit.swift', :path => '../'
+  pod 'SnapKit'
+end
+
+target 'CoinKitTests' do
+  pod 'CoinKit.swift', :path => '../'
+end
