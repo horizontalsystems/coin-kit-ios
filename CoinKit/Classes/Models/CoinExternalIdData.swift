@@ -1,7 +1,7 @@
 import ObjectMapper
 
 struct CoinExternalIdResponse: ImmutableMappable {
-    let coins: [CoinExternalData]
+    let coins: [CoinExternalIdData]
 
     init(map: Map) throws {
         coins = try map.value("coins")
@@ -9,7 +9,7 @@ struct CoinExternalIdResponse: ImmutableMappable {
 
 }
 
-class CoinExternalData: ImmutableMappable {
+class CoinExternalIdData: ImmutableMappable {
     let id: String
     let providerIds: [String: String]
 

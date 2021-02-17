@@ -11,7 +11,8 @@
 		11B3585E65F36C1A8A7FA88B /* CoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B35481811B4D6FA4528FC6 /* CoinController.swift */; };
 		11B35CB24BE6AF3424F71198 /* MainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B355B5791B609C7828E257 /* MainController.swift */; };
 		3C886BB367BDACA90DC20EDF /* libPods-CoinKitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50C5E94A51DE8C388A15B81D /* libPods-CoinKitTests.a */; };
-		58AAAB8497DFEBE90CE98498 /* CoinIdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AAA8D4521C297862FFD0A2 /* CoinIdCell.swift */; };
+		58AAA1EA8CA93FB0213730C1 /* CoinCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AAAC5C4FBE709A8FCF2189 /* CoinCell.swift */; };
+		58AAA2DF4FD1B3E2DF8F87E4 /* CoinExternalIdController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58AAACA8AB0D025CBE4404DB /* CoinExternalIdController.swift */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		D36AAB4123A749060065B32B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AAB3E23A749060065B32B /* AppDelegate.swift */; };
 		D36AAB4223A749060065B32B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D36AAB3F23A749060065B32B /* Assets.xcassets */; };
@@ -35,7 +36,8 @@
 		47E2D3EC8525C277562A79D5 /* libPods-CoinKitExample.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CoinKitExample.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		50C5E94A51DE8C388A15B81D /* libPods-CoinKitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-CoinKitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		572E0515D89757803325FFFF /* Pods-CoinKitExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinKitExample.release.xcconfig"; path = "Target Support Files/Pods-CoinKitExample/Pods-CoinKitExample.release.xcconfig"; sourceTree = "<group>"; };
-		58AAA8D4521C297862FFD0A2 /* CoinIdCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinIdCell.swift; sourceTree = "<group>"; };
+		58AAAC5C4FBE709A8FCF2189 /* CoinCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinCell.swift; sourceTree = "<group>"; };
+		58AAACA8AB0D025CBE4404DB /* CoinExternalIdController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoinExternalIdController.swift; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* CoinKitExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinKitExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* CoinKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoinKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,7 +103,8 @@
 				11B35481811B4D6FA4528FC6 /* CoinController.swift */,
 				D36AAB4423A749750065B32B /* LaunchScreen.storyboard */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
-				58AAA8D4521C297862FFD0A2 /* CoinIdCell.swift */,
+				58AAACA8AB0D025CBE4404DB /* CoinExternalIdController.swift */,
+				58AAAC5C4FBE709A8FCF2189 /* CoinCell.swift */,
 			);
 			name = "Example for CoinKit";
 			path = CoinKit;
@@ -355,7 +358,8 @@
 				D36AAB4123A749060065B32B /* AppDelegate.swift in Sources */,
 				11B35CB24BE6AF3424F71198 /* MainController.swift in Sources */,
 				11B3585E65F36C1A8A7FA88B /* CoinController.swift in Sources */,
-				58AAAB8497DFEBE90CE98498 /* CoinIdCell.swift in Sources */,
+				58AAA2DF4FD1B3E2DF8F87E4 /* CoinExternalIdController.swift in Sources */,
+				58AAA1EA8CA93FB0213730C1 /* CoinCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

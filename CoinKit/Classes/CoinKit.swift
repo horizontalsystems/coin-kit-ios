@@ -1,11 +1,14 @@
 import RxSwift
 
 public class CoinKit {
-    private let coinProviderManager: CoinProviderManager
+    private let coinManager: CoinManager
+    private let coinExternalIdManager: CoinProviderManager
     private let storage: GrdbStorage
 
-    private init(coinProviderManager: CoinProviderManager, storage: GrdbStorage) {
-        self.coinProviderManager = coinProviderManager
+    private init(coinManager: CoinManager, coinExternalIdManager: CoinProviderManager, storage: GrdbStorage) {
+        self.coinManager = coinManager
+        self.coinExternalIdManager = coinExternalIdManager
+
         self.storage = storage
     }
 
@@ -33,12 +36,16 @@ extension CoinKit {
 
 extension CoinKit {
 
-    public static func instance() throws -> CoinKit {
+    public static func instance(testNet: Bool = false) throws -> CoinKit {
         let storage = try GrdbStorage(databaseDirectoryUrl: databaseDirectoryUrl(), databaseFileName: "coin-kit-db")
-        let coinProvider = CoinExternalIdProvider(parser: JsonParser())
-        let coinProviderManager = CoinProviderManager(coinProvider: coinProvider, storage: storage)
 
-        return CoinKit(coinProviderManager: coinProviderManager, storage: storage)
+        let coinProvider = CoinProvider(parser: JsonParser(), testNet: testNet)
+        let coinManager = CoinManager(coinProvider: coinProvider, storage: storage)
+
+        let coinExternalIdProvider = CoinExternalIdProvider(parser: JsonParser())
+        let coinExternalIdManager = CoinProviderManager(coinProvider: coinExternalIdProvider, storage: storage)
+
+        return CoinKit(coinManager: coinManager, coinExternalIdManager: coinExternalIdManager, storage: storage)
     }
 
 }
@@ -46,11 +53,23 @@ extension CoinKit {
 extension CoinKit {
 
     public func providerId(id: String, provider: Provider) -> String? {
-        coinProviderManager.providerId(id: id, providerName: provider.rawValue)
+        coinExternalIdManager.providerId(id: id, providerName: provider.rawValue)
     }
 
     public func id(providerId: String, provider: Provider) -> String? {
-        coinProviderManager.id(providerId: providerId, providerName: provider.rawValue)
+        coinExternalIdManager.id(providerId: providerId, providerName: provider.rawValue)
+    }
+
+    public var coins: [Coin] {
+        coinManager.coins
+    }
+
+    public func add(coin: Coin) {
+        coinManager.save(coin: coin)
+    }
+
+    public func coin(id: String) -> Coin? {
+        coinManager.coin(id: id)
     }
 
 }

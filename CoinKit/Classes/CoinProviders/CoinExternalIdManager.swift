@@ -2,9 +2,9 @@ import ObjectMapper
 
 class CoinProviderManager {
     private let coinProvider: CoinExternalIdProvider
-    private let storage: IProviderCoinStorage
+    private let storage: ICoinExternalIdStorage
 
-    init(coinProvider: CoinExternalIdProvider, storage: IProviderCoinStorage) {
+    init(coinProvider: CoinExternalIdProvider, storage: ICoinExternalIdStorage) {
         self.coinProvider = coinProvider
         self.storage = storage
     }
@@ -22,7 +22,7 @@ class CoinProviderManager {
 extension CoinProviderManager {
 
     func providerId(id: String, providerName: String) -> String? {
-        if storage.isEmpty {
+        if storage.emptyExternalIds {
             sync()
         }
 
@@ -30,7 +30,7 @@ extension CoinProviderManager {
     }
 
     func id(providerId: String, providerName: String) -> String? {
-        if storage.isEmpty {
+        if storage.emptyExternalIds {
             sync()
         }
 

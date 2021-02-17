@@ -3,10 +3,10 @@ import SnapKit
 import RxSwift
 import CoinKit
 
-class CoinController: UIViewController {
+class CoinExternalIdController: UIViewController {
     private let disposeBag = DisposeBag()
     private let coinKit: CoinKit
-    private var coins = [Coin]()
+    private var coinTypes = [CoinType]()
 
     private let tableView = UITableView(frame: .zero, style: .plain)
 
@@ -23,7 +23,7 @@ class CoinController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Coins"
+        title = "Coin Ids"
 
         view.addSubview(tableView)
         tableView.snp.makeConstraints { maker in
@@ -41,17 +41,25 @@ class CoinController: UIViewController {
     }
 
     private func initCoins() {
-        coins = Array(coinKit.coins.prefix(20))
+        coinTypes = [.bitcoin,
+                     .bitcoinCash,
+                     .dash,
+                     .ethereum,
+                     .erc20(address: "0xeb269732ab75a6fd61ea60b06fe994cd32a83549"),
+                     .bep2(symbol: "CAS-167"),
+                     .binanceSmartChain,
+                     .bep20(address: "0x78650b139471520656b9e7aa7a5e9276814a38e9")
+        ]
 
         tableView.reloadData()
     }
 
 }
 
-extension CoinController: UITableViewDataSource, UITableViewDelegate {
+extension CoinExternalIdController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        coins.count
+        coinTypes.count
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,15 +71,15 @@ extension CoinController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let cell = cell as? CoinCell, coins.count > indexPath.row else {
+        guard let cell = cell as? CoinCell, coinTypes.count > indexPath.row else {
             return
         }
 
-        let coin = coins[indexPath.row]
+        let coinId = coinTypes[indexPath.row].rawValue
+        cell.topTitle = coinId
+        cell.middleTitle = "CoinGecko: \(coinKit.providerId(id: coinId, provider: .coinGecko) ?? "N/A")"
+        cell.bottomTitle = "CryptoCompare: \(coinKit.providerId(id: coinId, provider: .cryptoCompare) ?? "N/A")"
 
-        cell.topTitle = coin.id
-        cell.middleTitle = coin.title
-        cell.bottomTitle = coin.code
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
