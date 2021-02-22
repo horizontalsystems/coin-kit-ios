@@ -8,7 +8,7 @@ public class Coin: Record, ImmutableMappable {
     public let type: CoinType
 
     public var id: String {
-        type.rawValue
+        type.id
     }
 
     public override class var databaseTableName: String {
@@ -34,7 +34,7 @@ public class Coin: Record, ImmutableMappable {
 
         let id = [type, typeExtension].compactMap { $0 }.joined(separator: "|")
 
-        guard let coinType = CoinType(rawValue: id) else {
+        guard let coinType = CoinType(id: id) else {
             throw MapError(key: "type|extension", currentValue: id, reason: "can't parse coin type.")
         }
 
@@ -54,7 +54,7 @@ public class Coin: Record, ImmutableMappable {
         title = row[Columns.title]
         code = row[Columns.code]
         decimal = row[Columns.decimal]
-        type = CoinType(rawValue: row[Columns.id]) ?? .unsupported(id: row[Columns.id])
+        type = CoinType(id: row[Columns.id]) ?? .unsupported(id: row[Columns.id])
 
         super.init(row: row)
     }

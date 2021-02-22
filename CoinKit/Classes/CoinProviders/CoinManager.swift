@@ -49,8 +49,8 @@ extension CoinManager {
         storage.coin(id: id)
     }
 
-    func save(coin: Coin) {
-        return storage.save(coins: [coin])
+    func save(coins: [Coin]) {
+        return storage.save(coins: coins)
     }
 
 }

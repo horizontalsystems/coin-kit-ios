@@ -68,21 +68,21 @@ extension CoinType: Hashable {
 
 }
 
-extension CoinType: RawRepresentable {
-    public typealias RawValue = String
+extension CoinType: Identifiable {
+    public typealias ID = String
 
-    public init?(rawValue: RawValue) {
-        let chunks = rawValue.split(separator: "|")
+    public init?(id: ID) {
+        let chunks = id.split(separator: "|")
 
         if chunks.count == 1 {          // platform
             switch chunks[0] {
             case "bitcoin": self = .bitcoin
             case "litecoin": self = .litecoin
-            case "bitcoin-cash": self = .bitcoinCash
+            case "bitcoinCash": self = .bitcoinCash
             case "dash": self = .dash
             case "ethereum": self = .ethereum
             case "zcash": self = .zcash
-            case "binance": self = .binanceSmartChain
+            case "binanceSmartChain": self = .binanceSmartChain
             default: self = .unsupported(id: String(chunks[0]))
             }
         } else {
@@ -96,16 +96,16 @@ extension CoinType: RawRepresentable {
         }
     }
 
-    public var rawValue: RawValue {
+    public var id: ID {
         switch self {
         case .bitcoin: return "bitcoin"
         case .litecoin: return "litecoin"
-        case .bitcoinCash: return "bitcoin-cash"
+        case .bitcoinCash: return "bitcoinCash"
         case .dash: return "dash"
         case .ethereum: return "ethereum"
         case .zcash: return "zcash"
         case .erc20(let address): return ["erc20", address].joined(separator: "|")
-        case .binanceSmartChain: return "binance"
+        case .binanceSmartChain: return "binanceSmartChain"
         case .bep2(let symbol): return ["bep2", symbol].joined(separator: "|")
         case .bep20(let address): return ["bep20", address].joined(separator: "|")
         case .unsupported(let id): return ["unsupported", id].joined(separator: "|")
