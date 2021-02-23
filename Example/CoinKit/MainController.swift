@@ -2,10 +2,10 @@ import UIKit
 import CoinKit
 
 class MainController: UITabBarController {
-    private let coinKit: CoinKit
+    private let coinKit: Kit
 
     init() {
-        coinKit = try! CoinKit.instance()
+        coinKit = try! Kit.instance()
 
         super.init(nibName: nil, bundle: nil)
 

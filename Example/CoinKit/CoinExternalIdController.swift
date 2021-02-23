@@ -5,12 +5,12 @@ import CoinKit
 
 class CoinExternalIdController: UIViewController {
     private let disposeBag = DisposeBag()
-    private let coinKit: CoinKit
+    private let coinKit: Kit
     private var coinTypes = [CoinType]()
 
     private let tableView = UITableView(frame: .zero, style: .plain)
 
-    init(coinKit: CoinKit) {
+    init(coinKit: Kit) {
         self.coinKit = coinKit
 
         super.init(nibName: nil, bundle: nil)

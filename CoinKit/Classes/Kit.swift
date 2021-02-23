@@ -1,6 +1,6 @@
 import RxSwift
 
-public class CoinKit {
+public class Kit {
     private var disposeBag = DisposeBag()
     private let coinManager: CoinManager
     private let coinExternalIdManager: CoinProviderManager
@@ -43,10 +43,10 @@ public class CoinKit {
 
 }
 
-extension CoinKit {
+extension Kit {
 
     static var bundle: Bundle? {
-        Bundle(for: CoinKit.self).url(forResource: "CoinKit", withExtension: "bundle").flatMap { Bundle(url: $0) }
+        Bundle(for: Kit.self).url(forResource: "CoinKit", withExtension: "bundle").flatMap { Bundle(url: $0) }
     }
 
     public static func defaultCoins(testNet: Bool) -> [Coin] {
@@ -55,9 +55,9 @@ extension CoinKit {
 
 }
 
-extension CoinKit {
+extension Kit {
 
-    public static func instance(testNet: Bool = false) throws -> CoinKit {
+    public static func instance(testNet: Bool = false) throws -> Kit {
         let storage = try GrdbStorage(databaseDirectoryUrl: databaseDirectoryUrl(), databaseFileName: "coin-kit-db")
 
         let coinProvider = CoinProvider(parser: JsonParser(), testNet: testNet)
@@ -66,12 +66,12 @@ extension CoinKit {
         let coinExternalIdProvider = CoinExternalIdProvider(parser: JsonParser())
         let coinExternalIdManager = CoinProviderManager(coinProvider: coinExternalIdProvider, storage: storage)
 
-        return CoinKit(coinManager: coinManager, coinExternalIdManager: coinExternalIdManager, storage: storage)
+        return Kit(coinManager: coinManager, coinExternalIdManager: coinExternalIdManager, storage: storage)
     }
 
 }
 
-extension CoinKit {
+extension Kit {
 
     public func providerId(id: String, provider: Provider) -> String? {
         coinExternalIdManager.providerId(id: id, providerName: provider.rawValue)
