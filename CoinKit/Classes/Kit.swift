@@ -3,7 +3,6 @@ import RxSwift
 public class Kit {
     private var disposeBag = DisposeBag()
     private let coinManager: CoinManager
-    private let coinExternalIdManager: CoinProviderManager
     private let storage: GrdbStorage
 
     public var coinMigrationObservable: Observable<[Coin]>? {
@@ -12,9 +11,8 @@ public class Kit {
         }
     }
 
-    private init(coinManager: CoinManager, coinExternalIdManager: CoinProviderManager, storage: GrdbStorage) {
+    private init(coinManager: CoinManager, storage: GrdbStorage) {
         self.coinManager = coinManager
-        self.coinExternalIdManager = coinExternalIdManager
 
         self.storage = storage
     }
@@ -63,23 +61,12 @@ extension Kit {
         let coinProvider = CoinProvider(parser: JsonParser(), testNet: testNet)
         let coinManager = CoinManager(coinProvider: coinProvider, storage: storage)
 
-        let coinExternalIdProvider = CoinExternalIdProvider(parser: JsonParser())
-        let coinExternalIdManager = CoinProviderManager(coinProvider: coinExternalIdProvider, storage: storage)
-
-        return Kit(coinManager: coinManager, coinExternalIdManager: coinExternalIdManager, storage: storage)
+        return Kit(coinManager: coinManager, storage: storage)
     }
 
 }
 
 extension Kit {
-
-    public func providerId(id: String, provider: Provider) -> String? {
-        coinExternalIdManager.providerId(id: id, providerName: provider.rawValue)
-    }
-
-    public func id(providerId: String, provider: Provider) -> String? {
-        coinExternalIdManager.id(providerId: providerId, providerName: provider.rawValue)
-    }
 
     public var coins: [Coin] {
         coinManager.coins

@@ -12,12 +12,8 @@ class MainController: UITabBarController {
         let coinController = CoinController(coinKit: coinKit)
         coinController.tabBarItem = UITabBarItem(title: "Coins", image: UIImage(systemName: "dollarsign.circle"), tag: 0)
 
-        let coinExternalIdController = CoinExternalIdController(coinKit: coinKit)
-        coinExternalIdController.tabBarItem = UITabBarItem(title: "Ids", image: UIImage(systemName: "dollarsign.circle"), tag: 0)
-
         viewControllers = [
             UINavigationController(rootViewController: coinController),
-            UINavigationController(rootViewController: coinExternalIdController),
         ]
     }
 
