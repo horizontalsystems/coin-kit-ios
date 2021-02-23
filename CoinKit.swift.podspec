@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.swift_version = '5'
 
   s.source_files = 'CoinKit/Classes/**/*'
-  s.resource_bundle = { 'CoinKit' => ['CoinKit/Assets/*.xcassets', 'CoinKit/Assets/*.lproj/*.strings', 'CoinKit/Resources/*.json'] }
+  s.resource_bundle = { 'CoinKit' => ['CoinKit/Resources/*.json'] }
 
   s.requires_arc = true
 

@@ -75,7 +75,7 @@ extension CoinExternalIdController: UITableViewDataSource, UITableViewDelegate {
             return
         }
 
-        let coinId = coinTypes[indexPath.row].rawValue
+        let coinId = coinTypes[indexPath.row].id
         cell.topTitle = coinId
         cell.middleTitle = "CoinGecko: \(coinKit.providerId(id: coinId, provider: .coinGecko) ?? "N/A")"
         cell.bottomTitle = "CryptoCompare: \(coinKit.providerId(id: coinId, provider: .cryptoCompare) ?? "N/A")"

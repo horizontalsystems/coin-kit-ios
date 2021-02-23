@@ -7,13 +7,8 @@ class JsonParser {
             throw ParseError.notFound
         }
 
-        let text = try String(contentsOfFile: path, encoding: .utf8)
-        if let dataText = text.data(using: .utf8),
-           let dictionary = try JSONSerialization.jsonObject(with: dataText, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: Any] {
-
-            return try T(JSON: dictionary)
-        }
-        throw ParseError.cantParse
+        let jsonString = try String(contentsOfFile: path, encoding: .utf8)
+        return try T(JSONString: jsonString)
     }
 
 }

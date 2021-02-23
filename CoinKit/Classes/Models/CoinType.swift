@@ -27,8 +27,8 @@ extension CoinType: Equatable {
             return lhsAddress.lowercased() == rhsAddress.lowercased()
         case (.bep2(let lhsSymbol), .bep2(let rhsSymbol)):
             return lhsSymbol == rhsSymbol
-        case (.bep20(let lhsSymbol), .bep20(let rhsSymbol)):
-            return lhsSymbol == rhsSymbol
+        case (.bep20(let lhsAddress), .bep20(let rhsAddress)):
+            return lhsAddress.lowercased() == rhsAddress.lowercased()
         case (.unsupported(let lhsId), .unsupported(let rhsId)):
             return lhsId == rhsId
         default: return false
@@ -40,30 +40,7 @@ extension CoinType: Equatable {
 extension CoinType: Hashable {
 
     public func hash(into hasher: inout Hasher) {
-        switch self {
-        case .bitcoin:
-            hasher.combine("bitcoin")
-        case .litecoin:
-            hasher.combine("litecoin")
-        case .bitcoinCash:
-            hasher.combine("bitcoinCash")
-        case .dash:
-            hasher.combine("dash")
-        case .ethereum:
-            hasher.combine("ethereum")
-        case .zcash:
-            hasher.combine("Zcash")
-        case .binanceSmartChain:
-            hasher.combine("binance_smart_chain")
-        case .erc20(let address):
-            hasher.combine("erc20_\(address)")
-        case .bep2(let symbol):
-            hasher.combine("bep2_\(symbol)")
-        case .bep20(let address):
-            hasher.combine("bep20_\(address)")
-        case .unsupported(let id):
-            hasher.combine(id)
-        }
+        hasher.combine(id)
     }
 
 }
