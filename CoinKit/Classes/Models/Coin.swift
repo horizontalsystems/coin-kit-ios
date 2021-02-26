@@ -34,11 +34,7 @@ public class Coin: Record, ImmutableMappable {
 
         let id = [type, typeExtension].compactMap { $0 }.joined(separator: "|")
 
-        guard let coinType = CoinType(id: id) else {
-            throw MapError(key: "type|extension", currentValue: id, reason: "can't parse coin type.")
-        }
-
-        self.type = coinType
+        self.type = CoinType(id: id)
 
         super.init()
     }
@@ -54,7 +50,7 @@ public class Coin: Record, ImmutableMappable {
         title = row[Columns.title]
         code = row[Columns.code]
         decimal = row[Columns.decimal]
-        type = CoinType(id: row[Columns.id]) ?? .unsupported(id: row[Columns.id])
+        type = CoinType(id: row[Columns.id])
 
         super.init(row: row)
     }
