@@ -48,7 +48,7 @@ extension CoinType: Hashable {
 extension CoinType: Identifiable {
     public typealias ID = String
 
-    public init?(id: ID) {
+    public init(id: ID) {
         let chunks = id.split(separator: "|")
 
         if chunks.count == 1 {          // platform
