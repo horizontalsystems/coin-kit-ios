@@ -30,7 +30,10 @@ public class Coin: Record, ImmutableMappable {
         decimal = try map.value("decimal")
 
         let type: String = try map.value("type")
-        let typeExtension: String? = (try? map.value("address")) ?? (try? map.value("symbol"))
+        var typeExtension: String? = (try? map.value("address")) ?? (try? map.value("symbol"))
+        if type == "erc20" || type == "bep20" {
+            typeExtension = typeExtension?.lowercased()
+        }
 
         let id = [type, typeExtension].compactMap { $0 }.joined(separator: "|")
 
@@ -84,6 +87,21 @@ extension Coin: Comparable {
 
     public static func <(lhs: Coin, rhs: Coin) -> Bool {
         lhs.title < rhs.title
+    }
+
+}
+
+extension CoinType: Decodable {
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        var id = try container.decode(String.self)
+
+        if id.contains("erc20") || id.contains("bep20") {
+            id = id.lowercased()
+        }
+
+        self.init(id: id)
     }
 
 }
