@@ -181,7 +181,7 @@
             "code": "ANT",
             "decimal": 18,
             "type": "erc20",
-            "address": "0x960b236a07cf122663c4303350609a66a7b288c0"
+            "address": "0xa117000000f279d81a1d3cc75430faa017fa5a2e"
         },
         {
             "title": "Aragon Court",
@@ -261,7 +261,7 @@
             "address": "0x0d8775f648430679a709e98d2b0cb6250d2887ef"
         },
         {
-            "title": "beefy.finance",
+            "title": "Beefy Finance",
             "code": "BIFI",
             "decimal": 18,
             "type": "bep20",
@@ -2208,7 +2208,7 @@
         },
         {
             "title": "Binance-Peg Zcash Token",
-            "code": "COMP",
+            "code": "ZEC",
             "decimal": 18,
             "type": "bep20",
             "address": "0x1ba42e5193dfa8b03d15dd1b86a3113bbbef8eeb"
@@ -2275,6 +2275,20 @@
             "decimal": 18,
             "type": "bep20",
             "address": "0x4197c6ef3879a08cd51e5560da5064b773aa1d29"
+        },
+        {
+            "title": "Radicle",
+            "code": "RAD",
+            "decimal": 18,
+            "type": "erc20",
+            "address": "0x31c8eacbffdd875c74b94b077895bd78cf1e64a3"
+        },
+        {
+            "title": "Nebulas",
+            "code": "NAS",
+            "decimal": 18,
+            "type": "erc20",
+            "address": "0x5d65D971895Edc438f465c17DB6992698a52318D"
         }
     ]
 }
