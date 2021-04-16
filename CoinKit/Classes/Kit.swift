@@ -72,8 +72,8 @@ extension Kit {
         coinManager.coins
     }
 
-    public func save(coin: Coin) {
-        coinManager.save(coins: [coin])
+    public func save(coins: [Coin]) {
+        coinManager.save(coins: coins)
     }
 
     public func coin(id: String) -> Coin? {

@@ -50,7 +50,7 @@ extension CoinManager {
     }
 
     func save(coins: [Coin]) {
-        return storage.save(coins: coins)
+        storage.save(coins: coins)
     }
 
 }
