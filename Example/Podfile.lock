@@ -1,12 +1,12 @@
 PODS:
   - CoinKit.swift (0.1.0):
-    - GRDB.swift (~> 4.0)
+    - GRDB.swift (~> 5.0)
     - ObjectMapper (~> 4.0)
     - RxSwift (~> 5.0)
     - RxSwiftExt (~> 5)
-  - GRDB.swift (4.14.0):
-    - GRDB.swift/standard (= 4.14.0)
-  - GRDB.swift/standard (4.14.0)
+  - GRDB.swift (5.8.0):
+    - GRDB.swift/standard (= 5.8.0)
+  - GRDB.swift/standard (5.8.0)
   - ObjectMapper (4.2.0)
   - RxCocoa (5.1.1):
     - RxRelay (~> 5)
@@ -43,8 +43,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CoinKit.swift: 5fe0db6364858c95be2e328eb53c15ab8b1af0fd
-  GRDB.swift: 8cc3ab7c8b8b4ac1761deb8dca4b51c1c9d429f8
+  CoinKit.swift: 721781ae475f790572380f074f934014ca5ef0d7
+  GRDB.swift: 9b9beec114435e1d852ad68c136cff4c71134627
   ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
